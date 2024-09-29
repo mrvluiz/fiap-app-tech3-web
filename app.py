@@ -5,7 +5,7 @@ import json
 import boto3
 import pandas as pd
 import io
-import kaggle
+
 
 from os import listdir
 from os.path import isfile, join

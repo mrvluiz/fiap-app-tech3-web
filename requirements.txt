@@ -2,4 +2,3 @@ streamlit
 pandas
 boto3
 kaggle
-json

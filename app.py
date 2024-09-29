@@ -132,5 +132,6 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Execução Concluída :" +str(dataframe.shape))
         st.dataframe(dataframe, hide_index=False)
 
-        st.scatter_chart(dataframe)
+        chart = dataframe[['Alcoholism', 'SMS_received', 'Gender', 'Neighbourhood', 'Predição']]
+        st.bar_chart(chart)
 

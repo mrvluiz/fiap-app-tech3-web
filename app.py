@@ -27,8 +27,6 @@ KAGGLE_DATASET_NAME = 'gkalpolukcu/knn-algorithm-dataset'
 KAGGLE_PATH = 'kaggle-download'
 BUCKET_NAME = 'bucket-fiap-tech3-dw'
 
-
-
 def GetSessionAWS ():
     session = boto3.Session(aws_access_key_id=var_aws_access_key_id,
         aws_secret_access_key=var_aws_secret_access_key,

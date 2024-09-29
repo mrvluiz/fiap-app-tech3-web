@@ -55,9 +55,9 @@ def Read_Bucket_By_Key (BucketName, Key):
 
 st.title('AWS CLI Cloud Access: ')
 
-var_aws_access_key_id = st.text_input("aws_access_key_id", "ASIAYKRRLZFBV3JQ5BXU")
-var_aws_secret_access_key = st.text_input("aws_secret_access_key", "9CYFron0dXSocqhSdHvDHKkw770qANWk4dJIa7fj")
-var_aws_session_token = st.text_area("aws_session_token", "IQoJb3JpZ2luX2VjEAQaCXVzLXdlc3QtMiJGMEQCICXiLelMY6WBI2sjQuljJtXihH4j+NJDL/+nHDV/cB0qAiAtgL6WaqlxOow7kTROShXVrE+m1XgqoGrlAElBFgZxpCq0AghNEAEaDDU3MjQwNzkyNTA1OSIM3T/0E82f8V2q5ekDKpECqH87QOlaHPlTeVHCsKTDZhvX3d/YfjGT+PxKTZyiFOZDK3X3EyLisp/1RiyJeCv4oaYSuBrfAn+4FLQ6Br2TYwIbZ0lkx+4YeFeIXSOymioYL26UyIdoPo0I0fbNfK4wY77babIqrSkiYXSE1u36xhaAWIeelh8iNcVDbd+XBaZKI6KLWpzAluqW6XPoQ4FL6EinKp49L5NLRsq2mNHlvzs/I5m4WZoHcHuFLhxkbz+Ciehg/Km0qRy+J00ZSoDky31JwYu21b74mZPzXT9L8K3MRCKUpbyyO6ogKK+tJT2deoOyGeLINtMkDdjBWskIiSP7cg4QdZIcARtvbth3waz5ApdcRlz0UcMjNytW5QA3MKy84bcGOp4B2nvSflkxB3/5Ufz+sJwq5VDpbPeMujGFag4ngUNFY4kJ6JgtGC93ajrbdX0mrRZcn6HEFn8hvzXmJc31a1If7G0Qh/iY1kA8Zax96stLgSEwDJB1OOXOzQH2g/PCQnXlN1L6xWMR/Oip94vG8MXzVfW9cOvgIBr+h32a40Sv/SJRt2ROd9bA+m7S9usqUvoL5oG22z/+IRQn/0Qtm2o=")
+var_aws_access_key_id = st.text_input("aws_access_key_id", "ASIAYKRRLZFBYYRZJUPI")
+var_aws_secret_access_key = st.text_input("aws_secret_access_key", "bhGH5xd34o3ivF2oVGBf9L6AmzhHW7V0oXe1hJYk")
+var_aws_session_token = st.text_area("aws_session_token", "IQoJb3JpZ2luX2VjEA0aCXVzLXdlc3QtMiJHMEUCIQD13mKXzF+nOTQAvFKIyT6ibaiTS6Vo/zAFaIdfpO2mLQIgOWx3kwvTSZsbYPkyjIhjvtdbB5T5BNP4NTiBag3mG+IqtAIIVhABGgw1NzI0MDc5MjUwNTkiDBFHVX+4zdThkzFHNiqRAtRmfSuyuHy3lpQlGHoE6EWDpbm3LfINTkV6Tgn3enlkECLS2Yk+9cZlgBCfAI9+/z2LXI9TZM7d73dJFaRzy6QMcOYpdDF8/ITV5u9ucU7FJGmNYtJcUMzt+4fSM8b8lXJrrtmiwQtVQmcxqmcYKMmiBMxDIGOj9LIwYGXLZzlB+1O+CkYx6h8UyCytZaz+kB9jccRZyb0j9WeGSg/wJAlmtUIgToLeN0V/q7lMd21KhgHYZZuhCKA9LvH8gHzsuTSTtVV+NIVBRcbXvCNo/Kk2jHuZ9beSDuiplFmA0svWvLtacqVHmhP1Q4omfSQUxk2p9U1hDN6iwEjXQRs8FcTvnlXuwKyLKWsXMeN9gb7YvjCqveO3BjqdAaHpY++YwU7HDFjKt2KFcN0LU8m2nMAy0RWwyg49a/8dxpngOkeNfqO0DFGTnawC5nrulZ3V62AinRXu+oP9TkohksSk0SA1eWoup8rAzpHsHihTVag5MwfQPeeLPk6I6XTrFb938u6Js4cvdrFpo9QsM1NdBfmqJZMZQs1m3AebZd8dpur8RthF5uofkZA0ASO4hw0T9i+Cp31KZ7A=")
 
 var_Bucket_Name = st.text_input("Bucket_Name", "bucket-fiap-tech3-dw")
 var_Bucket_Path = st.text_input("Bucket_Path", "ML-MEDICAL-NOSHOW")
@@ -134,8 +134,7 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Execução Concluída :" +str(dataframe.shape))
         st.dataframe(dataframe, hide_index=False)
 
-        chart_data = dataframe[['Age', 'Scholarship', 'Hipertension', 'Diabetes',
-                                'Alcoholism', 'Handcap', 'SMS_received', 'Gender', 'Predição']]
+        chart_data = dataframe[[ 'Predição']]
 
         st.bar_chart(chart_data)
 

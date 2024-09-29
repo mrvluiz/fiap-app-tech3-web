@@ -98,7 +98,7 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Selecione o arquivo para predição !! ")   
     else:        
         st.write("Baixando Peakle da AWS para inicio da Predição")
-        s3Pickle = Read_Bucket_By_Key('bucket-fiap-tech3-dw', 'pipeline.pkl' )
+        s3Pickle = Read_Bucket_By_Key(var_Bucket_Name, var_pkl_File )
         pipeline = pickle.load(s3Pickle)      
         st.write("Exibindo informações do Peakle da AWS")
         cnt = 0

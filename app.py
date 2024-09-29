@@ -132,6 +132,11 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Execução Concluída :" +str(dataframe.shape))
         st.dataframe(dataframe, hide_index=False)
 
-        chart = dataframe[['Alcoholism', 'SMS_received', 'Gender', 'Predição']]
+        
+
+        chart = dataframe[['Predição']]
+
+        chart['Predição'] = chart['Predição'].replace({'0' : 'NÃO', '1' : 'SIM'} )
+
         st.bar_chart(chart)
 

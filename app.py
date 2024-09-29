@@ -133,10 +133,12 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.dataframe(dataframe, hide_index=False)
 
         
+        from matplotlib import pyplot as plt
+        import seaborn as sns
+        
 
-        chart = dataframe[['Predição']]
+        chart =  dataframe.groupby('Gender').size().plot(kind='barh', color=sns.palettes.mpl_palette('Dark2'))
 
-        chart['Predição'] = chart['Predição'].replace({'0' : 'NÃO', '1' : 'SIM'} )
 
         st.bar_chart(chart)
 

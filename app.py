@@ -35,7 +35,6 @@ def GetSessionAWS ():
     s3 = session.resource('s3')
     return s3
 
- 
 
 
 def Read_From_AWS (BucketName, BucketPath):    

@@ -132,13 +132,9 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Execução Concluída :" +str(dataframe.shape))
         st.dataframe(dataframe, hide_index=False)
 
-        
-        from matplotlib import pyplot as plt
-        import seaborn as sns
-        
+        chart_data = dataframe[['HorasAteDataDaConsulta', 'Age', 'Scholarship', 'Hipertension', 'Diabetes',
+                                'Alcoholism', 'Handcap', 'SMS_received', 'Gender']]
 
-        chart =  dataframe.groupby('Gender').size().plot(kind='barh', color=sns.palettes.mpl_palette('Dark2'))
+        st.line_chart(chart_data)
 
-
-        st.bar_chart(chart)
 

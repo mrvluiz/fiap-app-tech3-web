@@ -135,6 +135,6 @@ if st.button("Predição", type="primary", use_container_width=False):
         chart_data = dataframe[['HorasAteDataDaConsulta', 'Age', 'Scholarship', 'Hipertension', 'Diabetes',
                                 'Alcoholism', 'Handcap', 'SMS_received', 'Gender']]
 
-        st.line_chart(chart_data)
+        st.line_chart(chart_data, columns=["Alcoholism", "SMS_received", "Gender"])
 
 

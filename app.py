@@ -1,20 +1,17 @@
 import pandas as pd
-import pyarrow as pa
-import pyarrow.parquet as pq
-import json
 import boto3
 import pandas as pd
 import io
 
-
-from os import listdir
-from os.path import isfile, join
-from datetime import datetime
 import streamlit as st
-import pandas as pd
 from io import StringIO
-
 import pickle
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
 
 KAGGLE_DS_MEDICAL_NO_SHOW = 'joniarroba/noshowappointments/data'
 KAGGLE_DATASET_NAME = 'gkalpolukcu/knn-algorithm-dataset'

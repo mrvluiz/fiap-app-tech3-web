@@ -1,12 +1,6 @@
-import uuid
-import pandas as pd
-import os 
-import time
-import subprocess
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
-import shutil
 import json
 import boto3
 import pandas as pd

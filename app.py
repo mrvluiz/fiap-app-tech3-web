@@ -2,8 +2,10 @@ import pandas as pd
 import boto3
 import pandas as pd
 import io
+import streamlit as st
 
 import streamlit as st
+
 from io import StringIO
 import pickle
 from sklearn.pipeline import Pipeline
@@ -132,8 +134,9 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Execução Concluída :" +str(dataframe.shape))
         st.dataframe(dataframe, hide_index=False)
 
-        chart_data = dataframe[['HorasAteDataDaConsulta', 'Age',  'Gender']]
+        chart_data = dataframe[['Age', 'Scholarship', 'Hipertension', 'Diabetes',
+                                'Alcoholism', 'Handcap', 'SMS_received', 'Gender', 'Predição']]
 
-        st.scatter_chart(chart_data)
+        st.bar_chart(chart_data)
 
 

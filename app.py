@@ -50,7 +50,8 @@ def Read_Bucket_By_Key (BucketName, Key):
     s3 = GetSessionAWS()   
     my_bucket = s3.Bucket(BucketName)          
     objeto = my_bucket.Object(Key).get()['Body'].read()
-    return objeto
+    return io.BytesIO(objeto)
+
 
 
 st.title('AWS CLI Cloud Access: ')
@@ -68,6 +69,7 @@ st.title('Carregue seu arquivo aqui')
 
 uploaded_file = st.file_uploader("Choose a file")
 
+dataframe = None
 
 if uploaded_file is not None:
     # To read file as bytes:
@@ -92,11 +94,44 @@ aws_path = 'ML-MEDICAL-NOSHOW'
 kaggle_ds = 'joniarroba/noshowappointments'
 
 if st.button("Predição", type="primary", use_container_width=False):
-    st.write("Baixando Peakle da AWS para inicio da Predição")
 
-    object = Read_From_AWS(BUCKET_NAME, var_Bucket_Path)
-    df = pd.read_csv(io.BytesIO(object))
-    df.head()
-      
-    st.write("Dataframe Shape :" +str(df.shape))
-    st.dataframe(df, hide_index=False)
+    if dataframe is None: 
+        st.write("Selecione o arquivo para predição !! ")   
+    else:        
+        st.write("Baixando Peakle da AWS para inicio da Predição")
+        s3Pickle = Read_Bucket_By_Key('bucket-fiap-tech3-dw', 'pipeline.pkl' )
+        pipeline = pickle.load(s3Pickle)      
+        st.write("Exibindo informações do Peakle da AWS")
+        cnt = 0
+        for item in pipeline:
+            print('The data ', cnt, ' is : ', item)
+            cnt += 1
+
+        st.write("tratando dados do CSV")
+
+        dataframe.insert(loc=3, column='HorasAteDataDaConsulta', value = None)
+        dataframe = dataframe.drop('PatientId', axis=1)
+        dataframe = dataframe.drop('AppointmentID', axis=1)
+        dataframe['HorasAteDataDaConsulta'] = (pd.to_datetime(dataframe['ScheduledDay']) - pd.to_datetime(dataframe['AppointmentDay'])).dt.total_seconds() / 3600
+        dataframe['ScheduledDay'] = pd.to_numeric(pd.to_datetime(dataframe['ScheduledDay']))
+        dataframe['AppointmentDay'] = pd.to_numeric(pd.to_datetime(dataframe['AppointmentDay']))
+        
+        st.write("Dataframe Shape :" +str(dataframe.shape))
+        st.dataframe(dataframe, hide_index=False)
+
+
+        # Selecione as features relevantes para a predição
+        X_validacao = dataframe[['ScheduledDay', 'AppointmentDay', 'HorasAteDataDaConsulta',
+                                'Age', 'Scholarship', 'Hipertension', 'Diabetes',
+                                'Alcoholism', 'Handcap', 'SMS_received', 'Gender', 'Neighbourhood']]
+
+        # Faça a predição usando o pipeline treinado
+        y_pred = pipeline.predict(X_validacao)
+
+        # Adicione as predições ao DataFrame de validação
+        dataframe['Predição'] = y_pred
+        dataframe.head()
+
+        st.write("Execução Concluída :" +str(dataframe.shape))
+        st.dataframe(dataframe, hide_index=False)
+

@@ -134,8 +134,5 @@ if st.button("Predição", type="primary", use_container_width=False):
         st.write("Execução Concluída :" +str(dataframe.shape))
         st.dataframe(dataframe, hide_index=False)
 
-        chart_data = dataframe[[ 'Predição']]
-
-        st.bar_chart(chart_data)
 
 
